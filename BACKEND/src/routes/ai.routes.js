@@ -1,12 +1,7 @@
 const express = require('express');
 const router = express.Router()
+const aiController = require('../controllers/ai.controller.js')
 
-router.get('/get-response', (req, res) => {
-    const prompt = req.query.prompt;
-
-    if(!prompt){
-        return res.status(400).json({ error: 'Prompt is required' });
-    }
-})
+router.get('/get-response', aiController.getResponse)
 
 module.exports = router;
