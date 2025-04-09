@@ -1,12 +1,11 @@
-const aiService = require('../services/ai.service.js');
+const generateContent = require("../services/ai.service");
 
-module.exports.getResponse = async (req , res) => {
-    const prompt = req.query.prompt;
-
-    if(!prompt){
-        return res.status(400).json({ error: 'Prompt is required' });
+module.exports.getResponse = async (req, res) => {
+    try {
+        const prompt = req.body.prompt;
+        const output = await generateContent(prompt);
+        res.json({ result: output });
+    } catch (err) {
+        res.status(500).send("Error: " + err.message);
     }
-
-    const response = await aiService(prompt);
-    res.send(response)
-}
+};

@@ -1,14 +1,14 @@
 const express = require('express');
-const app = express(); // create server
+const app = express();
 
-const aiRoutes = require('./routes/ai.routes.js'); 
+app.use(express.json()); // ✅ Add this line to parse JSON body
 
+const aiRoutes = require('./routes/ai.routes.js');
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
-})
+});
 
-app.use('/ai', aiRoutes)
+app.use('/ai', aiRoutes);
 
-
-module.exports = app;  
+module.exports = app;

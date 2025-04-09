@@ -4,4 +4,5 @@ const aiController = require('../controllers/ai.controller.js')
 
 router.get('/get-response', aiController.getResponse)
 
+
 module.exports = router;
